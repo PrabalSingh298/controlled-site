@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>IPv6 Readiness Test Site</title>
+    <meta name="description" content="A simple controlled website with local and IPv4-only external resources.">
+    <link rel="stylesheet" href="css/site.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container">
+        <p class="eyebrow">Controlled test site</p>
+        <h1>IPv6 Readiness Test</h1>
+        <p class="subtitle">
+          This lightweight page loads ordinary local resources and one JavaScript
+          resource plus one image that are hosted specifically at IPv4-only endpoints.
+        </p>
+      </div>
+    </header>
+
+    <main class="container">
+      <section class="resource-status" aria-labelledby="status-heading">
+        <div>
+          <p class="section-label">Resource status</p>
+          <h2 id="status-heading">Page resources</h2>
+        </div>
+        <span id="ipv4-js-status" class="status-chip" aria-live="polite">
+          Checking IPv4 JavaScript...
+        </span>
+      </section>
+
+      <section class="card-grid" aria-label="Test sections">
+        <article class="card">
+          <img src="assets/network-card.svg" alt="" class="card-icon">
+          <h3>Local page assets</h3>
+          <p>
+            Stylesheets, images, and JavaScript are served by the local test server.
+          </p>
+        </article>
+
+        <article class="card">
+          <img
+            id="ipv4-only-image"
+            src="https://ipv4.google.com/favicon.ico"
+            alt="Google favicon loaded from an IPv4-only endpoint"
+            class="card-icon"
+          >
+          <h3>IPv4-only image</h3>
+          <p id="ipv4-image-status">Checking external IPv4 image...</p>
+        </article>
+
+        <article class="card">
+          <div class="network-mark" aria-hidden="true">v6</div>
+          <h3>Browser behavior</h3>
+          <p>
+            Navigation success and external resource results can be inspected with
+            browser network and peer-address evidence.
+          </p>
+        </article>
+      </section>
+
+      <section class="details">
+        <h2>Interactive check</h2>
+        <p>Use the button below to confirm that local JavaScript is functioning.</p>
+        <button id="resource-check" type="button">Run local resource check</button>
+        <output id="resource-result" aria-live="polite">Waiting for a check.</output>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container">Controlled IPv6 readiness test page</div>
+    </footer>
+
+    <script src="js/interactions.js"></script>
+    <script src="https://ipv4.google.com/complete/search?client=chrome&amp;q=ipv6&amp;callback=window.ipv4GoogleResource"></script>
+    <script src="js/site.js"></script>
+  </body>
+</html>
